@@ -19,14 +19,14 @@ class LinkedList:
             current = current.next
         current.next = new_node #make the next node the new node
 
-    def getter(self):
+    def getLengthOfList(self):
         '''Method that returns the length of the list'''
         current = self.head
         totalNodes = 0
         while current.next != None:
             totalNodes +=1
             current = current.next 
-        print(totalNodes)
+        return totalNodes
 
     def display(self):
         '''Displays the contents of the linked list'''
@@ -35,13 +35,37 @@ class LinkedList:
         while current.next !=None:
             current = current.next
             listOfElements.append(current.data)
-        print(listOfElements)
+        print (listOfElements)
 
+    def extractor(self):
+        '''Removes an item from the list given its index'''
+        index = int(input('Enter the index of the item to remove: '))
+        #check if the index passed is within the range
+        if index >= self.getLengthOfList() or index <0:
+            return None
+        #if the item to be removed is the head node
+        elif index == 0:
+            self.head = self.head.next
+        else:
+            #starting from index 0 interate to the given index
+            i=0
+            current_node = self.head
+            while i < index:
+                previous = current_node
+                current_node = current_node.next
+                i+=1
+            #update the pointers to remove the node at the index
+            previous.next = current_node.next
+            current_node.next = None
 
 
 
 myList = LinkedList()
 myList.appender(9)
 myList.appender(5)
+myList.appender(8)
 myList.display()
-myList.getter()
+print(myList.getLengthOfList())
+myList.extractor()
+myList.display()
+print(myList.getLengthOfList())

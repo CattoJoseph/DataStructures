@@ -42,6 +42,7 @@ class LinkedList:
         index = int(input('Enter the index of the item to remove: '))
         #check if the index passed is within the range
         if index >= self.getLengthOfList() or index <0:
+            print("This input was invalid")
             return None
         #if the item to be removed is the head node
         elif index == 0:
@@ -58,14 +59,35 @@ class LinkedList:
             previous.next = current_node.next
             current_node.next = None
 
+    def searcher(self, index):
+        '''Allows the position of an item in the list to be searched for'''
+        if index >= self.getLengthOfList():
+            print("Error! Given index is out of range")
+            return None
+        current_index = 0
+        current = self.head
+        while True:
+            current = current.next
+            if current_index == index:
+                return current.data
+            
 
+
+#"Object of type 'LinkedList' has no len()"
+#could use the method getlengthoglist in the for loop but the method now doesn't work
+#no errors appear but it just doesn't print the number of items (length)
 
 myList = LinkedList()
-myList.appender(9)
-myList.appender(5)
-myList.appender(8)
+myList.appender(33)
+myList.appender(43)
+myList.appender(44)
+myList.appender(22)
+myList.appender(56)
 myList.display()
 print(myList.getLengthOfList())
-myList.extractor()
-myList.display()
-print(myList.getLengthOfList())
+print(myList.searcher(0))
+#print(myList[2])
+#print(myList.getLengthOfList())
+#myList.extractor()
+#myList.display()
+#print(myList.getLengthOfList())
